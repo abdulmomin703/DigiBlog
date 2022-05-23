@@ -1,0 +1,8 @@
+.textarea {
+  width: 100%;
+  background-color: #eeeeee;
+  border: none;
+  resize: none;
+  padding: 8px;
+  color: #7b7b7b;
+}

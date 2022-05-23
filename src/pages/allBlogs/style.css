@@ -1,0 +1,53 @@
+.driptivity-text {
+  color: #1d1e1d;
+  text-align: center;
+}
+.driptivity-content {
+  padding: 60px 0px;
+}
+
+.recent-activity-flex {
+  display: flex;
+  margin: 0px -5px 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.driptivity-content .recent-activity-col {
+  margin-bottom: 15px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link {
+  width: 50%;
+  font-size: 20px;
+  border-bottom-color: #0c8ed3;
+}
+.nav-tabs .nav-link.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #0c8ed3 #0c8ed3 #fff;
+}
+.nav-tabs .nav-link:hover {
+  color: #0c8ed3;
+}
+@media screen and (max-width: 767px) {
+  .driptivity-content.driptivity-content-tour .row {
+    flex-direction: column;
+  }
+
+  .recent-activity-flex {
+    margin: 0px -5px 20px;
+  }
+  .recent-activity-col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .driptivity-content.driptivity-content-tour .row {
+    flex-direction: column;
+  }
+
+  .driptivity-content.driptivity-content-tour {
+    padding: 20px 60px;
+  }
+}

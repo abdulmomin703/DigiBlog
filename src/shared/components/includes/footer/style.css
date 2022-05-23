@@ -1,0 +1,150 @@
+footer {
+  background-color: #151515;
+  color: #fff;
+  padding: 20px 0px 30px;
+}
+
+.footer-top-flex {
+  display: flex;
+  justify-content: center;
+}
+.footer-logo {
+  padding: 20px 50px 20px 30px;
+}
+.footer-bottom-flex {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #d3dce5;
+  margin-top: 10px;
+  padding-top: 20px;
+}
+.privacy-col ul {
+  display: flex;
+}
+
+.footer-social-icons ul {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.privacy-col ul li a {
+  font-size: 14px;
+  margin-right: 20px;
+  color: #fff;
+}
+
+.privacy-col ul li:last-child a {
+  margin-right: 0px;
+}
+
+.footer-social-icons ul li a {
+  margin-right: 20px;
+}
+
+.footer-social-icons ul li:last-child a {
+  margin-right: 0px;
+}
+
+.privacy-col {
+  width: 33.33%;
+}
+
+p.copywrite-text {
+  width: 33.33%;
+  text-align: center;
+  margin: 0px;
+}
+
+.footer-social-icons {
+  width: 33.33%;
+}
+
+.react-confirm-alert-overlay {
+  background-color: rgb(0 0 0 / 65%) !important;
+}
+
+.react-confirm-alert-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: black !important;
+  border-radius: 0px !important;
+  width: 350px !important;
+}
+
+.react-confirm-alert-button-group > button {
+  background-color: #0c8ed3 !important;
+  border-radius: 3px !important;
+}
+.footer-logo-style {
+  width: 300px;
+}
+
+@media screen and (max-width: 767px) {
+  .footer-top-flex {
+    flex-direction: column;
+  }
+
+  .footer-logo {
+    text-align: center;
+    padding: 0px 0px;
+  }
+
+  .quick-links {
+    border: 0px;
+  }
+
+  .footer-bottom-flex {
+    margin-top: 10px;
+    padding-top: 15px;
+  }
+
+  .footer-bottom-flex {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .privacy-col {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .privacy-col ul {
+    justify-content: center;
+  }
+
+  p.copywrite-text {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .footer-social-icons {
+    width: 100%;
+  }
+
+  .footer-social-icons ul {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .privacy-col ul li a {
+    font-size: 11px;
+    margin-right: 14px;
+  }
+
+  .privacy-col {
+    width: 35%;
+  }
+
+  p.copywrite-text {
+    width: 30%;
+  }
+
+  footer {
+    padding: 10px 0px 20px;
+  }
+  .footer-logo {
+    padding: 20px 19px;
+  }
+}

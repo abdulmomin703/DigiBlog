@@ -1,0 +1,116 @@
+.steezdesigns-content {
+  padding: 30px 0px 20px;
+  width: 100%;
+}
+.steezdesigns-flex {
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.steezdesigns-img-text-col {
+  display: flex;
+  width: 75%;
+}
+.steezdesigns-profile-img img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.steezdesigns-profile-text {
+  width: calc(100% - 160px);
+  padding-left: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.steezdesigns-profile-text h3 {
+  color: #151515;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.steezdesigns-profile-text h6 {
+  color: #383838;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.steezdesigns-profile-text p {
+  color: #304659;
+  font-weight: 500;
+  font-size: 14px;
+}
+.steezdesigns-profile-text span {
+  color: #484848;
+  display: block;
+  align-items: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.steezdesigns-profile-text span i {
+  margin-right: 7px;
+}
+.steezdesigns-profile-text a {
+  min-width: 220px;
+}
+.steezdesigns-followers-col {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.steezdesigns-followers-col ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.steezdesigns-followers-col ul li {
+  width: 100%;
+  background-color: #151515;
+  color: #ffffff;
+  text-align: center;
+  padding: 25px 40px;
+}
+
+.steezdesigns-followers-col ul li h4 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.steezdesigns-followers-col ul li h5 {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+  .steezdesigns-content {
+    padding: 0px 0px 40px;
+  }
+  .steezdesigns-flex {
+    flex-direction: column;
+  }
+  .steezdesigns-img-text-col {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  .steezdesigns-profile-img img {
+    width: 100px;
+    height: 100px;
+  }
+  .steezdesigns-profile-text {
+    width: calc(100% - 100px);
+    padding-left: 15px;
+  }
+  .steezdesigns-followers-col {
+    width: 100%;
+    justify-content: center;
+  }
+  .steezdesigns-followers-col ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

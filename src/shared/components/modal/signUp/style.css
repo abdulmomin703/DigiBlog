@@ -1,0 +1,134 @@
+.login-bg {
+  width: 100%;
+}
+
+.signUp-heading {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Josefin Sans", sans-serif;
+  margin-top: 20px;
+}
+.signup-login-form {
+  width: 65%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 50px;
+  margin-top: 60px;
+}
+.address-container {
+  width: 100%;
+  height: fit-content;
+  background-color: rgb(235, 232, 232);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 15px;
+  padding-top: 15px;
+  margin-top: 25px;
+}
+
+.address-heading {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "Josefin Sans", sans-serif;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-size: 11px;
+  font-weight: bold;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+.signup-button {
+  width: 100%;
+  background-color: #0c8ed3;
+  border: 0px;
+  padding: 9px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer !important;
+  margin-bottom: 50px !important;
+}
+.signup-dual-input-container {
+  display: flex;
+  flex-direction: row;
+}
+.signup-input-container {
+  border: 0px;
+  border-bottom: 1px solid rgb(0 0 0 / 15%);
+  width: 100%;
+  font-size: 13px;
+  color: #90a1ac;
+  margin-bottom: 25px;
+  padding-bottom: 3px;
+  position: relative;
+}
+.signup-image {
+  height: 100%;
+  object-fit: cover;
+}
+
+.signup-heading {
+  font-size: 20px;
+  margin-bottom: 0;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+}
+
+.error {
+  color: red;
+  font-size: 11px;
+  text-align: left;
+  position: absolute;
+  top: 25px;
+  z-index: 1;
+  /* margin: 10px 0; */
+}
+.error2 {
+  color: red;
+  font-size: 11px;
+  text-align: left;
+  position: absolute;
+  z-index: 1;
+  /* margin: 10px 0; */
+}
+
+.formik-container {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.input-value {
+  color: gray !important;
+  width: 100%;
+  border: 0px;
+}
+.left {
+  text-align: left;
+  color: gray !important;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+.empty {
+  width: 50px;
+}
+@media (max-width: 576px) {
+  .signup-login-form {
+    padding: 0px !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .login-bg {
+    width: 100%;
+  }
+  .login-bg img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
