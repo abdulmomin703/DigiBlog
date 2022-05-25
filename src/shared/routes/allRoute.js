@@ -1,5 +1,6 @@
 import Home from "../../pages/home";
 import AllBlogs from "../../pages/allBlogs";
+import CreateBlog from "../../pages/CreateBlog";
 
 let allPublicRoute = [
   {
@@ -18,6 +19,11 @@ let loggedInRoute = [
     path: "/home/:id",
     component: Home,
     name: "Home",
+  },
+  {
+    path: "/home/:id/create",
+    component: CreateBlog,
+    name: "Create Blog",
   },
 ];
 export { allPublicRoute, loggedInRoute };

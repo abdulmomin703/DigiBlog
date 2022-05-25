@@ -6,6 +6,7 @@ import { Avatar, NotFoundAnim } from "../../assets";
 import "./style.css";
 import { Spinner } from "react-bootstrap";
 import Animation from "../../shared/components/common/Animation";
+import { Link } from "react-router-dom";
 
 function Home() {
   const param = useParams();
@@ -51,7 +52,22 @@ function Home() {
       </section>
       <section className="driptivity-content driptivity-content-tour">
         <div className="container">
-          <h2 className="mb-3">My Blogs</h2>
+          <h2 className="mb-3 d-flex justify-content-between">
+            My Blogs
+            <Link
+              className="btn btn-primary d-flex align-items-center"
+              to={
+                user
+                  ? user?.user
+                    ? `/home/${user?.user?._id}/create`
+                    : "/"
+                  : "/"
+              }
+            >
+              Create Blog
+            </Link>
+          </h2>
+
           <div className="row">
             <div className="col-md-12">
               <div className={`recent-activity-flex`}>
