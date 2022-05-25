@@ -9,7 +9,7 @@ import { toastMessage } from "../../shared/components/common/toast";
 import "./style.css";
 import { NotFoundAnim } from "../../assets";
 import Animation from "../../shared/components/common/Animation";
-
+import Blogs from "./Blogs";
 function AllBlogs() {
   const user = useSelector((state) => state.root.user);
   const [loader, setLoader] = useState(false);
@@ -19,6 +19,7 @@ function AllBlogs() {
       <div className="container" data-aos="fade-up" data-aos-duration="500">
         <h2 className="driptivity-text">All Blogs</h2>
       </div>
+      <Blogs />
     </div>
   );
 }
