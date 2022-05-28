@@ -1,0 +1,43 @@
+.error_blog {
+  color: red;
+  font-size: 11px;
+  text-align: left;
+  top: 25px;
+  z-index: 1;
+  margin-top: 10px;
+}
+
+.subcontainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.banner-image-container {
+  height: 200px;
+  width: 200px;
+  background: #eeeeee;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 10px 0px;
+}
+
+.upload-styles {
+  height: inherit;
+  width: inherit;
+  border-radius: inherit;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 41px;
+  display: flex;
+}
+
+.image-styles {
+  height: 50px;
+  width: 50px;
+}
+.image-styles2 {
+  height: 200px;
+  width: 200px;
+}

@@ -7,13 +7,57 @@ import "./style.css";
 import { Spinner } from "react-bootstrap";
 import Animation from "../../shared/components/common/Animation";
 import { Link } from "react-router-dom";
+import { getWeb3 } from "../../shared/util/getweb3";
+import DigiBlog from "../../abis/DigiBlog.json";
+import BlogTile from "../allBlogs/BlogTile/BlogTile";
 
 function Home() {
-  const param = useParams();
   const user = useSelector((state) => state.root.user);
+  const [blogsList, setBlogsList] = useState(null);
   const [loader, setLoader] = useState(false);
-  console.log(user);
-  useEffect(() => {}, []);
+
+  let contract = null;
+  let arr = [];
+
+  const addBlogInfo = async (id) => {
+    const blog_info = await contract.methods.getBlogInfo(id).call();
+    arr.push(blog_info);
+  };
+
+  const getUserBlogs = async () => {
+    setLoader(true);
+    setBlogsList(null);
+    let web3 = await getWeb3(null);
+    if (!web3) {
+      setLoader(false);
+    } else if (web3) {
+      const networkId = await web3?.eth.net.getId();
+      const networkData = DigiBlog.networks[networkId];
+      if (networkData) {
+        const abi = DigiBlog.abi;
+        const address = networkData.address;
+        contract = new web3.eth.Contract(abi, address);
+        try {
+          await contract.methods
+            .getUserBlogs()
+            .call({ from: user?.user?.walletaddress })
+            .then((blogs_ids) => {
+              Promise.all(blogs_ids.map(addBlogInfo)).then(() => {
+                setBlogsList(arr);
+                setLoader(false);
+              });
+            });
+          setLoader(false);
+        } catch (e) {
+          console.log(e);
+          setLoader(false);
+        }
+      }
+    }
+  };
+  useEffect(() => {
+    getUserBlogs();
+  }, []);
   return (
     <div data-aos="fade-up" data-aos-duration="500">
       <section className="steezdesigns-content">
@@ -59,7 +103,7 @@ function Home() {
               to={
                 user
                   ? user?.user
-                    ? `/home/${user?.user?._id}/create`
+                    ? `/home/${user?.user?.walletaddress}/create`
                     : "/"
                   : "/"
               }
@@ -68,29 +112,19 @@ function Home() {
             </Link>
           </h2>
 
-          <div className="row">
-            <div className="col-md-12">
-              <div className={`recent-activity-flex`}>
-                {/* {loader ? (
-                  <div className="d-flex align-items-center">
-                    <Spinner animation="grow" size="lg" />
-                  </div>
-                ) : booksList && booksList.length > 0 ? (
-                  booksList?.map((item, key) => {
-                    return user?.user?.type === "publisher" ? (
-                      <div></div>
-                    ) : (
-                      <div></div>
-                    );
-                  })
-                ) : (
-                  <div className="pb-5 animation-container">
-                    <Animation Pic={NotFoundAnim} Message={"No Books Found"} />
-                  </div>
-                )} */}
-              </div>
+          {loader ? (
+            <div className="d-flex align-items-center">
+              <Spinner animation="grow" size="lg" />
             </div>
-          </div>
+          ) : user?.user?.blogs > 0 ? (
+            blogsList?.map((item, key) => {
+              return <BlogTile key={key} item={item}></BlogTile>;
+            })
+          ) : (
+            <div className="pb-5 animation-container">
+              <Animation Pic={NotFoundAnim} Message={"No Blogs Found"} />
+            </div>
+          )}
         </div>
       </section>
     </div>

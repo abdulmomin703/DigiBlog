@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.logo-style {
+  width: 200px;
+}
+
 .cus-navigation nav ul {
   display: flex;
   align-items: center;

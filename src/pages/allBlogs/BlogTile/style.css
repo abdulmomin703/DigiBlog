@@ -1,0 +1,13 @@
+.recent-activity-col {
+  padding: 0px 10px;
+  width: 25%;
+  position: relative;
+}
+.recent-activity-img {
+  height: 250px;
+  width: 100%;
+}
+
+.width-set {
+  width: 75%;
+}

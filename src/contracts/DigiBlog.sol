@@ -14,14 +14,23 @@ contract DigiBlog{
         uint256 no_blogs;
         string bio;
     }
-    //array to store our nfts
-    // string [] public books;
+  
+    struct Blog {
+        uint256 id;
+        address blogger_address;
+        string title;
+        string body;
+        string image;
+        uint256 date;
+    }
 
-    // Will be used for login
     mapping(address => bool) public users;
 
-    // Get user info based on address
     mapping(address => User) public user_info;
+
+    constructor () {
+       contract_name = "DigiBlog";
+    }
 
     function login() view external returns (bool) {
         return users[msg.sender];
@@ -53,8 +62,70 @@ contract DigiBlog{
         user_info[msg.sender].avatar = avatar;
     }
 
-    constructor () {
-       contract_name = "DigiBlog";
+    uint256 blogId = 0;
+
+    mapping(uint256 => bool) blog_exist;
+
+    mapping(uint256 => Blog) id_to_blog;
+
+    mapping(address => uint256[]) user_to_blog;
+
+    function createBlog(address user, string memory title, string memory body, string memory image) external {
+        require(user != address(0), 'Error - Invalid Wallet Address');
+        require(users[user], 'Error - User Does not exists');
+
+        blogId += 1;
+
+        Blog memory newBlog = Blog(blogId, user, title, body, image, block.timestamp);
+
+        user_to_blog[address(0)].push(blogId);
+
+        id_to_blog[blogId] = newBlog;
+
+        user_to_blog[user].push(blogId);
+
+        blog_exist[blogId] = true;
+
+        user_info[user].no_blogs += 1;
+
+    }
+    function remove(uint _valueToFindAndRemove, uint[] storage _array)  internal {
+        uint256 index = 0;
+        for (uint i = 0; i < _array.length; i++){
+            if(_array[i] == _valueToFindAndRemove)
+                index = i;
+        }
+
+        _array[index] = _array[_array.length-1];
+        _array.pop();
     }
 
+    function deleteBlog(uint256 id) external {
+        remove(id,user_to_blog[address(0)]);
+    }
+
+    function getBlogInfo (uint256 id) external view returns (Blog memory) {
+        
+        require(blog_exist[id] , 'Error - Blog Does not exists');
+
+        return id_to_blog[id];
+    }
+
+    function getAllBlogs() view external returns(uint[] memory) {
+        return user_to_blog[address(0)];
+    }
+
+     function getUserBlogs() view external returns(uint[] memory) {
+        require(users[msg.sender], 'Error - User Does not exists');
+        return user_to_blog[msg.sender];
+    }
+
+      function editBlog (uint256 id, address user, string memory title, string memory body, string memory image) external {
+        require(users[user], 'Error - User Does not exists');
+        require(blog_exist[id], 'Error - Blog Does not exists');
+        require(id_to_blog[id].blogger_address == user, 'Error - Only the owner can edit Blog');
+        id_to_blog[id].title = title;
+        id_to_blog[id].body = body;
+        id_to_blog[id].image = image;
+    }
 }

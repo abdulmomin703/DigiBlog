@@ -25,7 +25,6 @@ function EditProfileModal({ openModal, HideModal }) {
   );
   const [userPhotoFile, setUserPhotoFile] = useState(null);
   const dispatch = useDispatch();
-  console.log(user?.user, "check");
   const initialValues = {
     firstname: user?.user?.firstname,
     lastname: user?.user?.lastname,

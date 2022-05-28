@@ -33,6 +33,7 @@ contract("DigiBlog", (accounts) => {
       await contract.signUp(
         "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
         "momin",
+        "iqbal",
         "momin1"
       );
     });
@@ -53,16 +54,122 @@ contract("DigiBlog", (accounts) => {
 
   describe("Login", async () => {
     it("Should login after creating account", async () => {
-      const login = await contract.login(
-        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea"
-      );
+      const login = await contract.login.call({
+        from: "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+      });
       assert.equal(login, true);
     });
     it("Should not login without creating account", async () => {
-      const login = await contract.login(
-        "0xAF96C034c4498b3B625847eE970025D63372e54D"
-      );
+      const login = await contract.login.call({
+        from: "0xAF96C034c4498b3B625847eE970025D63372e54D",
+      });
       assert.equal(login, false);
+    });
+  });
+
+  describe("Get User Information", async () => {
+    it("Should be able to get user information after login", async () => {
+      const user_info = await contract.getUserInfo.call({
+        from: "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+      });
+      assert.equal(user_info.firstname, "momin");
+      assert.equal(user_info.lastname, "iqbal");
+      assert.equal(user_info.username, "momin1");
+    });
+  });
+
+  describe("Create Blog and Get Blog Info", async () => {
+    it("Logged In user must be able to Create Blog", async () => {
+      await contract.createBlog(
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+        "title",
+        "body",
+        "image"
+      );
+
+      const blog_info = await contract.getBlogInfo(1);
+      assert.equal(
+        blog_info.blogger_address,
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea"
+      );
+      assert.equal(blog_info.title, "title");
+      assert.equal(blog_info.body, "body");
+      assert.equal(blog_info.image, "image");
+    });
+  });
+
+  describe("Delete Blog and Get All Blogs", async () => {
+    it("Logged In user must be able to Create Blog", async () => {
+      await contract.createBlog(
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+        "title1",
+        "body1",
+        "image1"
+      );
+      await contract.createBlog(
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+        "title1",
+        "body1",
+        "image1"
+      );
+      let value = await contract.getAllBlogs();
+      assert.equal(value[0], 1);
+      assert.equal(value[1], 2);
+      assert.equal(value[2], 3);
+
+      await contract.deleteBlog(2);
+      value = await contract.getAllBlogs();
+      assert.equal(value[0], 1);
+      assert.equal(value[1], 3);
+    });
+  });
+
+  describe("Edit Blog", async () => {
+    it("User must be able to Edit Blog", async () => {
+      await contract.editBlog(
+        1,
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+        "title5",
+        "body5",
+        "image5"
+      );
+      const blog_info = await contract.getBlogInfo(1);
+      assert.equal(
+        blog_info.blogger_address,
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea"
+      );
+      assert.equal(blog_info.title, "title5");
+      assert.equal(blog_info.body, "body5");
+      assert.equal(blog_info.image, "image5");
+    });
+  });
+
+  describe("Each user must be able to view his/her own blogs", async () => {
+    it("User must be able to View his/her Blogs", async () => {
+      await contract.signUp(
+        "0xAF96C034c4498b3B625847eE970025D63372e54D",
+        "talha",
+        "muanawar",
+        "talha1"
+      );
+
+      await contract.createBlog(
+        "0xAF96C034c4498b3B625847eE970025D63372e54D",
+        "titleT",
+        "bodyT",
+        "imageT"
+      );
+
+      let value = await contract.getUserBlogs.call({
+        from: "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+      });
+      assert.equal(value[0], 1);
+      assert.equal(value[2], 3);
+
+      value = await contract.getUserBlogs.call({
+        from: "0xAF96C034c4498b3B625847eE970025D63372e54D",
+      });
+      assert.equal(value[0], 4);
     });
   });
 });

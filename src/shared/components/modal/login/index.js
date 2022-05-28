@@ -36,6 +36,7 @@ function LoginModal({ openModal, HideModal, OpenModal1, setAddress }) {
           let res_info = await contract.methods
             .getUserInfo()
             .call({ from: walletAddress });
+          console.log(res_info);
           let info = {};
           info["firstname"] = res_info["firstname"];
           info["lastname"] = res_info["lastname"];

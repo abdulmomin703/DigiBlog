@@ -9,4 +9,13 @@ const EditUser = (obj) => {
   });
 };
 
-export { EditUser };
+const EditBlog = (obj) => {
+  console.log(obj);
+  return axios.put("users/editBlog", obj, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export { EditUser, EditBlog };

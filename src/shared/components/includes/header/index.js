@@ -89,6 +89,7 @@ export default function Header(props) {
                 <img
                   src={require("../../../../assets/icons/logo.svg").default}
                   alt="logo"
+                  className="logo-style"
                 />
               </Link>
             </div>

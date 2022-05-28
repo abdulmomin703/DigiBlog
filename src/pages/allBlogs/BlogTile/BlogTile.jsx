@@ -1,27 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BlogImageBaseUrl from "../../../shared/util/blogImageBaseURL";
+import "./style.css";
 
-import CurrentDate from "./CurrentDate"; //TODO: use in the Create_Blog or Edit_Blog functionality 
-
-export default function BlogTile() {
+export default function BlogTile(item, key) {
+  const val = item.item;
   return (
     <div className="p-2 d-flex flex-column flex-md-row align-items-center border">
-      <div>
+      {/* <div className="recent-activity-col">
         <img
-          src="https://picsum.photos/700"
-          className="img-thumbnail"
-          width="300px"
-          height="300px"
-          style={{ objectFit: "cover" }}
+          src={`${BlogImageBaseUrl}${val.image}`}
+          className="img-thumbnail recent-activity-img"
         ></img>
       </div>
-      <div className="px-5">
-        <p className="h4">Firebase; is it still worth using?</p>
-        <p className="h6 text-muted">By Jane Watson</p>
-        <p>
-          With so many other options available to a user, is Firebase still
-          worth using in this era?
-        </p>
+      <div className="px-2 width-set">
+        <p className="h4">{val.title}</p>
+        <p className="h6 text-muted">By {val.name}</p>
+        <p>{val.body}</p>
         <div>
           <Link className="btn btn-primary w-25" to="0">
             Edit Blog
@@ -34,13 +29,10 @@ export default function BlogTile() {
         </div>
         <div>
           <div className="text-muted">
-            <small><CurrentDate /></small>
-          </div>
-          <div className="text-muted">
-            <small>Rating: 4.5/5</small>
+            <small>{val.date}</small>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

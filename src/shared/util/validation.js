@@ -16,4 +16,13 @@ const EditProfileVS = yup.object().shape({
   bio: yup.string().required("Bio is Required").label("bio"),
 });
 
-export { RegistrationVS, EditProfileVS };
+const CreateBlogVS = yup.object().shape({
+  title: yup.string().required("Title is Required").label("firstname"),
+  body: yup.string().required("Body is Required").label("lastname"),
+  coverImage: yup
+    .mixed()
+    .required("Cover Image is Required")
+    .label("coverImage"),
+});
+
+export { RegistrationVS, EditProfileVS, CreateBlogVS };
