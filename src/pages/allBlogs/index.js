@@ -24,7 +24,17 @@ function AllBlogs() {
 
   const addBlogInfo = async (id) => {
     const blog_info = await contract.methods.getBlogInfo(id).call();
-    arr.push(blog_info);
+    const name = await contract.methods
+      .getFullName(blog_info.blogger_address)
+      .call();
+    let info = {};
+    info.title = blog_info.title;
+    info.body = blog_info.body;
+    info.image = blog_info.image;
+    info.name = name;
+    info.id = blog_info.id;
+    info.blogger_address = blog_info.blogger_address;
+    arr.push(info);
   };
 
   const getAllBlogs = async () => {
@@ -85,6 +95,7 @@ function AllBlogs() {
                   title={item.title}
                   body={item.body}
                   image={item.image}
+                  name={item.name}
                   id={item.id}
                   walletaddress={user?.user?.walletaddress}
                   showButtons={
@@ -102,6 +113,7 @@ function AllBlogs() {
                   body={item.body}
                   image={item.image}
                   id={item.id}
+                  name={item.name}
                   showButtons={false}
                 />
               );

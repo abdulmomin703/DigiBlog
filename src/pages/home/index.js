@@ -21,7 +21,16 @@ function Home() {
 
   const addBlogInfo = async (id) => {
     const blog_info = await contract.methods.getBlogInfo(id).call();
-    arr.push(blog_info);
+    const name = await contract.methods
+      .getFullName(blog_info.blogger_address)
+      .call();
+    let info = {};
+    info.title = blog_info.title;
+    info.body = blog_info.body;
+    info.image = blog_info.image;
+    info.name = name;
+    info.id = blog_info.id;
+    arr.push(info);
   };
 
   const getUserBlogs = async () => {
@@ -57,7 +66,7 @@ function Home() {
   };
   useEffect(() => {
     getUserBlogs();
-  }, []);
+  }, [user?.user?.blogs]);
   return (
     <div data-aos="fade-up" data-aos-duration="500">
       <section className="steezdesigns-content">
@@ -124,6 +133,7 @@ function Home() {
                     title={item.title}
                     body={item.body}
                     image={item.image}
+                    name={item.name}
                     walletaddress={user?.user?.walletaddress}
                     id={item.id}
                     showButtons={true}

@@ -9,7 +9,7 @@ import { EditBlog } from "../../shared/services/uploadProfilePic";
 import { toastMessage } from "../../shared/components/common/toast";
 import { getWeb3 } from "../../shared/util/getweb3";
 import DigiBlog from "../../abis/DigiBlog.json";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../shared/redux/reducers/userSlice";
 
@@ -40,7 +40,7 @@ export default function CreateBlog() {
 
   const handleSaveBlog = async (values, action) => {
     let formData = new FormData();
-    action.setSubmitting(false);
+    console.log("wow", banner);
     formData.append("image", banner);
     formData.append("current_image", "");
     await EditBlog(formData)
@@ -99,7 +99,7 @@ export default function CreateBlog() {
           };
           dispatch(setUser(resp));
           action.setSubmitting(false);
-          history.push(`/home/${user?.user?.walletaddress}`);
+          history.push(`/home/${String(walletaddress)}`);
           toastMessage("Blog Crearted Successfully", "success");
         } catch (e) {
           console.log(e);

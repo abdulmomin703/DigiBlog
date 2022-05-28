@@ -62,6 +62,15 @@ contract DigiBlog{
         user_info[msg.sender].avatar = avatar;
     }
 
+    function getFullName (address user_address) external view returns (string memory) {
+        require(users[user_address], 'Error - User Does not exists');
+
+        string memory fullname = string.concat(user_info[user_address].firstname, " ");
+        fullname =  string.concat(fullname, user_info[user_address].lastname);
+
+        return fullname;
+    }
+    
     uint256 blogId = 0;
 
     mapping(uint256 => bool) blog_exist;
@@ -118,12 +127,12 @@ contract DigiBlog{
         return user_to_blog[address(0)];
     }
 
-     function getUserBlogs() view external returns(uint[] memory) {
+    function getUserBlogs() view external returns(uint[] memory) {
         require(users[msg.sender], 'Error - User Does not exists');
         return user_to_blog[msg.sender];
     }
 
-      function editBlog (uint256 id, address user, string memory title, string memory body, string memory image) external {
+    function editBlog (uint256 id, address user, string memory title, string memory body, string memory image) external {
         require(users[user], 'Error - User Does not exists');
         require(blog_exist[id], 'Error - Blog Does not exists');
         require(id_to_blog[id].blogger_address == user, 'Error - Only the owner can edit Blog');

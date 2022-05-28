@@ -15,6 +15,7 @@ import "./style.css";
 
 export default function BlogTile(item, key, showButtons) {
   const val = item;
+  console.log(val);
   const user = useSelector((state) => state.root.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -58,7 +59,8 @@ export default function BlogTile(item, key, showButtons) {
                         user: info,
                       };
                       dispatch(setUser(resp));
-                      history.push(`/home/${val.walletaddress}`);
+                      history.push(`/home/${user?.user?.walletaddress}`);
+                      setSubmitting(false);
                       toastMessage("Blog Deleted Successfully", "success");
                     });
                 } catch (e) {
@@ -90,11 +92,13 @@ export default function BlogTile(item, key, showButtons) {
         {item.showButtons && (
           <>
             <div>
-              <Link className="btn btn-primary w-25" to="0">
+              <Link
+                className="btn btn-primary w-25"
+                to={`/home/${val.id}/edit`}
+              >
                 Edit Blog
               </Link>
             </div>
-
             <button
               type="submit"
               className="btn btn-danger w-25 my-1"

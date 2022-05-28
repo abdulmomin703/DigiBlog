@@ -10,7 +10,7 @@ const EditUser = (obj) => {
 };
 
 const EditBlog = (obj) => {
-  console.log(obj);
+  console.log("good", obj.get("image"));
   return axios.put("users/editBlog", obj, {
     headers: {
       "Content-Type": "multipart/form-data",

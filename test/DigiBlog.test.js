@@ -192,4 +192,13 @@ contract("DigiBlog", (accounts) => {
       assert.equal(value[0], 4);
     });
   });
+
+  describe("Get Full Name", async () => {
+    it("User must be able to view his/her fullname.", async () => {
+      let value = await contract.getFullName(
+        "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea"
+      );
+      assert.equal(value, "momin iqbal");
+    });
+  });
 });
