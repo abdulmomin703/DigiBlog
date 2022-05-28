@@ -9,7 +9,7 @@ import { EditBlog } from "../../shared/services/uploadProfilePic";
 import { toastMessage } from "../../shared/components/common/toast";
 import { getWeb3 } from "../../shared/util/getweb3";
 import DigiBlog from "../../abis/DigiBlog.json";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../shared/redux/reducers/userSlice";
 
@@ -89,18 +89,17 @@ export default function CreateBlog() {
           info["username"] = user?.user?.username;
           info["avatar"] = user?.user?.avatar;
           let val = parseInt(user?.user?.blogs);
-          console.log("sed1");
-          console.log(val);
           val += 1;
-          console.log("sed2");
-          console.log(val);
-          info["blogs"] = toString(val);
+          info["blogs"] = val.toString();
           info["bio"] = user?.user?.bio;
           info["walletaddress"] = user?.user?.walletaddress;
-          console.log(info);
-          dispatch(setUser(info));
+          let resp = {
+            isLoggedIn: true,
+            user: info,
+          };
+          dispatch(setUser(resp));
           action.setSubmitting(false);
-          history.push(`/home/${String(walletaddress)}`);
+          history.push(`/home/${user?.user?.walletaddress}`);
           toastMessage("Blog Crearted Successfully", "success");
         } catch (e) {
           console.log(e);

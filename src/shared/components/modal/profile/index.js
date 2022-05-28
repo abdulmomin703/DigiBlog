@@ -45,7 +45,7 @@ function ProfileModal({ openModal, HideModal }) {
                       <img
                         load="lazy"
                         src={
-                          user?.user?.avatar != ""
+                          user?.user?.avatar !== ""
                             ? `${AvatarBaseURL}${user?.user?.avatar}`
                             : `${Avatar}`
                         }

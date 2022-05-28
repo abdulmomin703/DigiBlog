@@ -164,7 +164,27 @@ contract("DigiBlog", (accounts) => {
         from: "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
       });
       assert.equal(value[0], 1);
-      assert.equal(value[2], 3);
+      assert.equal(value[1], 3);
+
+      value = await contract.getUserBlogs.call({
+        from: "0xAF96C034c4498b3B625847eE970025D63372e54D",
+      });
+      assert.equal(value[0], 4);
+    });
+  });
+
+  describe("Advanced Delete", async () => {
+    it("User must be able to delete his/her Blogs", async () => {
+      await contract.deleteBlog(1);
+
+      let value = await contract.getAllBlogs();
+      assert.equal(value[1], 3);
+      assert.equal(value[0], 4);
+
+      value = await contract.getUserBlogs.call({
+        from: "0xF40edA02462D3173485C3f0a4F8EfbdfB9cB51Ea",
+      });
+      assert.equal(value[0], 3);
 
       value = await contract.getUserBlogs.call({
         from: "0xAF96C034c4498b3B625847eE970025D63372e54D",

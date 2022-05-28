@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Modal, Button, Spinner } from "react-bootstrap";
+import React from "react";
+import { Modal, Spinner } from "react-bootstrap";
 import { SignUpImage } from "../../../../assets";
 import { useDispatch } from "react-redux";
 import { getWeb3 } from "../../../util/getweb3";

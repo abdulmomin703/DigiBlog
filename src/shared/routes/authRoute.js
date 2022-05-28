@@ -7,7 +7,7 @@ import { allPublicRoute, loggedInRoute } from "./allRoute";
 import { Route } from "react-router-dom";
 
 function AuthRoute() {
-  const { user, loader } = useSelector((state) => state.root);
+  const { user } = useSelector((state) => state.root);
   return (
     <div style={{ position: "relative" }}>
       <Header />

@@ -101,7 +101,10 @@ contract DigiBlog{
     }
 
     function deleteBlog(uint256 id) external {
-        remove(id,user_to_blog[address(0)]);
+        address owner = id_to_blog[id].blogger_address; 
+        remove(id, user_to_blog[address(0)]);
+        remove(id, user_to_blog[owner]);
+        user_info[owner].no_blogs -= 1;
     }
 
     function getBlogInfo (uint256 id) external view returns (Blog memory) {

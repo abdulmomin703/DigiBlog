@@ -94,7 +94,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section className="driptivity-content driptivity-content-tour">
+      <section className="driptivity-content driptivity-content-tour margin-top-40">
         <div className="container">
           <h2 className="mb-3 d-flex justify-content-between">
             My Blogs
@@ -111,20 +111,31 @@ function Home() {
               Create Blog
             </Link>
           </h2>
-
-          {loader ? (
-            <div className="d-flex align-items-center">
-              <Spinner animation="grow" size="lg" />
-            </div>
-          ) : user?.user?.blogs > 0 ? (
-            blogsList?.map((item, key) => {
-              return <BlogTile key={key} item={item}></BlogTile>;
-            })
-          ) : (
-            <div className="pb-5 animation-container">
-              <Animation Pic={NotFoundAnim} Message={"No Blogs Found"} />
-            </div>
-          )}
+          <div className="margin-top">
+            {loader ? (
+              <div className="d-flex align-items-center">
+                <Spinner animation="grow" size="lg" />
+              </div>
+            ) : user?.user?.blogs > 0 ? (
+              blogsList?.map((item, key) => {
+                return (
+                  <BlogTile
+                    key={key}
+                    title={item.title}
+                    body={item.body}
+                    image={item.image}
+                    walletaddress={user?.user?.walletaddress}
+                    id={item.id}
+                    showButtons={true}
+                  ></BlogTile>
+                );
+              })
+            ) : (
+              <div className="pb-5 animation-container">
+                <Animation Pic={NotFoundAnim} Message={"No Blogs Found"} />
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </div>
