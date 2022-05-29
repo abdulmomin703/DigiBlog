@@ -18,6 +18,7 @@ import "./styles.css";
 export default function EditTheBlog() {
   const params = useParams();
   const [startValues, setStartValues] = useState(null);
+  const [currentImage, setCurrentImage] = useState(null);
 
   const getTheBlogInfo = async () => {
     let web3 = await getWeb3(null);
@@ -39,6 +40,7 @@ export default function EditTheBlog() {
                 body: res.body,
                 coverImage: res.image,
               };
+              setCurrentImage(res.image);
               setStartValues(initialValues);
             });
         } catch (e) {
@@ -70,7 +72,7 @@ export default function EditTheBlog() {
       console.log(banner);
       let formData = new FormData();
       formData.append("image", banner);
-      formData.append("current_image", "");
+      formData.append("current_image", currentImage);
       await EditBlog(formData)
         .then(async (res) => {
           if (res.statusText === "OK") {

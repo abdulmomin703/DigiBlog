@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../shared/redux/reducers/userSlice";
 import { toastMessage } from "../../../shared/components/common/toast";
+import { DeleteBlog } from "../../../shared/services/uploadProfilePic";
 
 import "./style.css";
 
@@ -43,7 +44,7 @@ export default function BlogTile(item, key, showButtons) {
                   await contract.methods
                     .deleteBlog(item.id)
                     .send({ from: String(walletaddress) })
-                    .then(() => {
+                    .then(async () => {
                       let info = {};
                       info["firstname"] = user?.user?.firstname;
                       info["lastname"] = user?.user?.lastname;
@@ -62,6 +63,10 @@ export default function BlogTile(item, key, showButtons) {
                       history.push(`/home/${user?.user?.walletaddress}`);
                       setSubmitting(false);
                       toastMessage("Blog Deleted Successfully", "success");
+                      let obj = { image: item.image };
+                      await DeleteBlog(obj).then((res) => {
+                        console.log(res);
+                      });
                     });
                 } catch (e) {
                   console.log(e);
